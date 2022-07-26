@@ -48,34 +48,91 @@ const Form = () => {
         <span>
           <img
             className="img1"
-            onMouseOver={() =>
-              setIsStar1(
-                !isStar2 && !isStar3 && !isStar4 && !isStar5 && !isStar1
-              )
+            onMouseOver={
+              () => {
+                if (!isStar1) {
+                  setIsStar1((prev) => !prev);
+                } else {
+                  setIsStar1(false);
+                  setIsStar2(false);
+                  setIsStar3(false);
+                  setIsStar4(false);
+                  setIsStar5(false);
+                }
+              }
+              // !isStar2 && !isStar3 && !isStar4 && !isStar5 && !isStar1
             }
             src={isStar1 ? review1 : iniReview}
           />
           <img
             className="img2"
-            onMouseOver={() => setIsStar2(isStar1 && !isStar2)}
+            onMouseOver={
+              () => {
+                if (!isStar2) {
+                  setIsStar2((prev) => !prev);
+                  setIsStar1(true);
+                } else {
+                  setIsStar2(false);
+                  setIsStar3(false);
+                  setIsStar4(false);
+                  setIsStar5(false);
+                }
+              }
+              // !isStar2 && !isStar3 && !isStar4 && !isStar5 && !isStar1
+            }
             src={isStar2 ? review2 : iniReview}
           />
           <img
             className="img3"
-            onMouseOver={() => setIsStar3(isStar1 && isStar2 && !isStar3)}
+            onMouseOver={
+              () => {
+                if (!isStar3) {
+                  setIsStar3((prev) => !prev);
+                  setIsStar1(true);
+                  setIsStar2(true);
+                } else {
+                  setIsStar3(false);
+                  setIsStar4(false);
+                  setIsStar5(false);
+                }
+              }
+              // !isStar2 && !isStar3 && !isStar4 && !isStar5 && !isStar1
+            }
             src={isStar3 ? review3 : iniReview}
           />
           <img
             className="img4"
-            onMouseOver={() =>
-              setIsStar4(isStar1 && isStar2 && isStar3 && !isStar4)
+            onMouseOver={
+              () => {
+                if (!isStar4) {
+                  setIsStar4((prev) => !prev);
+                  setIsStar1(true);
+                  setIsStar2(true);
+                  setIsStar3(true);
+                } else {
+                  setIsStar4(false);
+                  setIsStar5(false);
+                }
+              }
+              // !isStar2 && !isStar3 && !isStar4 && !isStar5 && !isStar1
             }
             src={isStar4 ? review4 : iniReview}
           />
           <img
             className="img5"
-            onMouseOver={() =>
-              setIsStar5(isStar1 && isStar2 && isStar3 && isStar4 && !isStar5)
+            onMouseOver={
+              () => {
+                if (!isStar5) {
+                  setIsStar5((prev) => !prev);
+                  setIsStar1(true);
+                  setIsStar2(true);
+                  setIsStar3(true);
+                  setIsStar4(true);
+                } else {
+                  setIsStar5(false);
+                }
+              }
+              // !isStar2 && !isStar3 && !isStar4 && !isStar5 && !isStar1
             }
             src={isStar5 ? review5 : iniReview}
           />
