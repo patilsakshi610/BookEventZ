@@ -91,6 +91,7 @@ const Form = () => {
           placeholder="Name"
           type={"text"}
           onChange={(e) => setInputData({ ...inputData, name: e.target.value })}
+          value={inputData.name}
         />
         <input
           placeholder="Email"
@@ -98,13 +99,16 @@ const Form = () => {
           onChange={(e) =>
             setInputData({ ...inputData, email: e.target.value })
           }
+          value={inputData.email}
         />
         <input
-          placeholder="Number"
+          placeholder="Contact"
           type={"number"}
-          onChange={(e) =>
-            setInputData({ ...inputData, phone: e.target.value })
-          }
+          onChange={(e) => {
+            if (e.target.value.length <= 10)
+              setInputData({ ...inputData, phone: e.target.value });
+          }}
+          value={inputData.phone}
         />
         <button className="btn" disabled={disabledBtn} type="submit">
           Submit
