@@ -9,31 +9,30 @@ import "./Form.css";
 import { NavLink } from "react-router-dom";
 
 const Form = () => {
-  const [email, setEmail] = useState();
-  const [name, setName] = useState();
-  const [number, setNumber] = useState();
-  const [reviews, setReview] = useState();
+  const [inputData, setInputData] = useState({
+    name: "",
+    email: "",
+    review: "",
+    phone: "",
+  });
+  const [show, setShow] = useState(false);
   const [isStar1, setIsStar1] = useState(false);
   const [isStar2, setIsStar2] = useState(false);
   const [isStar3, setIsStar3] = useState(false);
   const [isStar4, setIsStar4] = useState(false);
   const [isStar5, setIsStar5] = useState(false);
 
-  const onChangeHandler = (type, data) => {
-    type === "name" && setName(data);
-    type === "email" && setEmail(data);
-    type === "number" && setNumber(data);
-    type === "review" && setReview(data);
-  };
-
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(email, name, number, reviews);
-    setName("");
-    setEmail("");
-    setNumber("");
-    setReview("");
+    setShow(true);
   };
+
+  const disabledBtn =
+    !inputData.name ||
+    !inputData.phone ||
+    !inputData.email ||
+    !inputData.review;
+
   return (
     <div className="form_wrapper">
       <NavLink style={{ color: "white" }} to="/tabs/shipping">
@@ -84,37 +83,45 @@ const Form = () => {
         <textarea
           placeholder="Write your review"
           type={"text"}
-          onChange={(e) => {
-            onChangeHandler("review", e.target.value);
-          }}
-          value={reviews}
+          onChange={(e) =>
+            setInputData({ ...inputData, review: e.target.value })
+          }
         />
         <input
           placeholder="Name"
           type={"text"}
-          onChange={(e) => {
-            onChangeHandler("name", e.target.value);
-          }}
-          value={name}
+          onChange={(e) => setInputData({ ...inputData, name: e.target.value })}
         />
         <input
           placeholder="Email"
           type={"email"}
-          onChange={(e) => {
-            onChangeHandler("email", e.target.value);
-          }}
-          value={email}
+          onChange={(e) =>
+            setInputData({ ...inputData, email: e.target.value })
+          }
         />
         <input
           placeholder="Number"
           type={"number"}
-          onChange={(e) => {
-            onChangeHandler("number", e.target.value);
-          }}
-          value={number}
+          onChange={(e) =>
+            setInputData({ ...inputData, phone: e.target.value })
+          }
         />
-        <button type="submit">Submit</button>
+        <button className="btn" disabled={disabledBtn} type="submit">
+          Submit
+        </button>
       </form>
+      <div>
+        {show && (
+          <div onClick={() => setShow(false)}>
+            <div className="whiteContent">
+              <p> Name: {inputData.name}</p>
+              <p>Email: {inputData.email}</p>
+              <p>Phone Number: {inputData.phone}</p>
+            </div>
+            <div className="blackOverlay"></div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
